@@ -1,0 +1,265 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Arial", sans-serif;
+  overflow: hidden;
+  background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 50%, #fecfef 100%);
+  min-height: 100vh;
+}
+
+/* หน้าแรก - Love Letter Button */
+.page-one {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  position: relative;
+  z-index: 10;
+  transition: transform 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+.page-one.bounce-out {
+  transform: translateY(-100vh) scale(0.8);
+}
+
+.love-letter-btn {
+  width: 300px;
+  height: 200px;
+  background: linear-gradient(145deg, #fff5f5, #ffe0e6);
+  border-radius: 20px;
+  border: none;
+  cursor: pointer;
+  position: relative;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1), 0 5px 15px rgba(0, 0, 0, 0.07);
+  transition: all 0.3s ease;
+  overflow: hidden;
+}
+
+.love-letter-btn:hover {
+  transform: translateY(-5px) scale(1.05);
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15), 0 10px 25px rgba(0, 0, 0, 0.1);
+}
+
+.love-letter-btn:active {
+  transform: translateY(-2px) scale(1.02);
+}
+
+.envelope {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.envelope-back {
+  width: 220px;
+  height: 140px;
+  background: linear-gradient(145deg, #ff6b9d, #ff8fb3);
+  border-radius: 10px;
+  position: absolute;
+}
+
+.envelope-front {
+  width: 220px;
+  height: 70px;
+  background: linear-gradient(145deg, #ff8fb3, #ffb3d1);
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  clip-path: polygon(0 0, 100% 0, 50% 100%);
+}
+
+.heart {
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  background: #ff4757;
+  transform: rotate(45deg);
+  animation: heartbeat 2s infinite;
+}
+
+.heart::before,
+.heart::after {
+  content: "";
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  background: #ff4757;
+  border-radius: 50%;
+}
+
+.heart::before {
+  top: -15px;
+  left: 0;
+}
+
+.heart::after {
+  top: 0;
+  left: -15px;
+}
+
+@keyframes heartbeat {
+  0%,
+  100% {
+    transform: rotate(45deg) scale(1);
+  }
+  50% {
+    transform: rotate(45deg) scale(1.1);
+  }
+}
+
+.click-text {
+  position: absolute;
+  bottom: -50px;
+  left: 50%;
+  transform: translateX(-50%);
+  color: #ff6b9d;
+  font-size: 18px;
+  font-weight: bold;
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    opacity: 0.7;
+    transform: translateX(-50%) scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: translateX(-50%) scale(1.05);
+  }
+}
+
+/* หน้าสอง - Pixel Animation */
+.page-two {
+  position: absolute;
+  top: 100vh;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(135deg, #faf7f2 0%, #f5f1eb 50%, #f0ebe4 100%);
+  transition: transform 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+.page-two.slide-up {
+  transform: translateY(-100vh);
+}
+
+.pixel-container {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  align-items: center;
+}
+
+.pixel-row {
+  display: flex;
+  gap: 2px;
+}
+
+.pixel-block {
+  width: 8px;
+  height: 8px;
+  background: #f5f1eb;
+  border-radius: 1px;
+  transition: background-color 0.3s ease;
+  border: 1px solid rgba(255, 192, 203, 0.1);
+}
+
+.pixel-block.active {
+  background: #ff6b9d;
+  box-shadow: 0 0 10px rgba(255, 107, 157, 0.5);
+}
+
+/* Floating hearts background */
+.floating-heart {
+  position: absolute;
+  color: rgba(255, 192, 203, 0.15);
+  font-size: 20px;
+  animation: float 6s infinite linear;
+  pointer-events: none;
+}
+
+@keyframes float {
+  0% {
+    transform: translateY(100vh) rotate(0deg);
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-100px) rotate(360deg);
+    opacity: 0;
+  }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .love-letter-btn {
+    width: 250px;
+    height: 170px;
+  }
+
+  .envelope-back {
+    width: 180px;
+    height: 120px;
+  }
+
+  .envelope-front {
+    width: 180px;
+    height: 60px;
+  }
+
+  .pixel-block {
+    width: 6px;
+    height: 6px;
+  }
+
+  .pixel-container {
+    gap: 6px;
+  }
+
+  .pixel-row {
+    gap: 1px;
+  }
+}
+
+@media (max-width: 480px) {
+  .love-letter-btn {
+    width: 200px;
+    height: 140px;
+  }
+
+  .envelope-back {
+    width: 150px;
+    height: 100px;
+  }
+
+  .envelope-front {
+    width: 150px;
+    height: 50px;
+  }
+
+  .pixel-block {
+    width: 4px;
+    height: 4px;
+  }
+
+  .pixel-container {
+    gap: 4px;
+  }
+}
